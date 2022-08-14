@@ -9,23 +9,20 @@ function addImagesToGallery(images) {
   const galleryList = document.querySelector('.gallery');
   const galleryItems = images.map(image => {
     const {preview, original, description} = image;
-    const galleryItem = document.createElement('a');
-    galleryItem.className = 'gallery__item';
-    galleryItem.href = original;
-    galleryItem.insertAdjacentHTML('beforeend',
+    return (
       `
-                        <img
-                          class="gallery__image"
-                          src="${preview}"
-                          data-source="${original}"
-                          alt="${description}"
-                        />
+                <a class="gallery__item" href="${original}">
+                    <img
+                      class="gallery__image"
+                      src="${preview}"
+                      alt="${description}"
+                    />
+                </a>
+
        `);
+  }).join('');
 
-    return galleryItem;
-  });
-
-  galleryList.append(...galleryItems);
+  galleryList.insertAdjacentHTML('beforeend', galleryItems);
 
   return galleryList;
 }
@@ -35,19 +32,14 @@ function configSimpleLightBox(imagesList) {
     'captionsData': 'alt',
     'captionDelay': 250,
   });
+  const galleryImages = [...imagesList.querySelectorAll('.gallery__image')];
 
-  for (const imagesListElement of imagesList) {
-    imagesListElement.addEventListener('click', event => {
+  galleryImages.forEach(image => {
+    image.addEventListener('click', event => {
       event.preventDefault();
 
-      lightbox.open();
+      lightbox.open(event.target);
     });
-  }
-
-  imagesList.addEventListener('click', event => {
-    event.preventDefault();
-
-    lightbox.open();
   });
 
 }

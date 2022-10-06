@@ -17,6 +17,8 @@ function handleForm() {
 
   form.addEventListener('input', _.throttle((event) => {
     const localStorageObj = JSON.parse(localStorage.getItem(localStorageKey)) || {};
+    console.log(JSON.parse(undefined));
+
     const {name, value} = event.target;
     const formInputObj = {
       ...localStorageObj,
@@ -38,3 +40,4 @@ function handleForm() {
 }
 
 handleForm();
+console.log('here');

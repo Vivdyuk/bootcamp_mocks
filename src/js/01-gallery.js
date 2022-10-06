@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 console.log(galleryItems);
 
-function addImagesToGallery(images) {
+export function addImagesToGallery(images) {
   const galleryList = document.querySelector('.gallery');
   const galleryItems = images.map(image => {
     const {preview, original, description} = image;

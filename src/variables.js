@@ -256,7 +256,7 @@ export const fruits = ['Apple', 'Sea Buckthorn', 'Mango', 'Cherry', 'Strawberry'
 
 export const posts =  fetch('https://jsonplaceholder.typicode.com/posts/').then(response => response.json()).then(data => data);
 
-export const comments = await fetch('https://jsonplaceholder.typicode.com/comments/').then(response => response.json()).then(data => data);
+export const comments = fetch('https://jsonplaceholder.typicode.com/comments/').then(response => response.json()).then(data => data);
 
 export const galleryItems = [
   {

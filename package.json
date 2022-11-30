@@ -2,14 +2,14 @@
   "name": "goit-js-hw-08",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://vivdyuk.github.io/goit-js-hw-08",
+  "homepage": "https://vivdyuk.github.io/bootcamp_mocks",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08"
+    "build": "parcel build src/*.html --public-url /bootcamp_mocks"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vivdyuk/goit-js-hw-08.git"
+    "url": "git+https://github.com/vivdyuk/bootcamp_mocks.git"
   },
   "keywords": [],
   "author": "Ruslan Vyvdyuk <vivdyuk.ruslan@gmail.com>",

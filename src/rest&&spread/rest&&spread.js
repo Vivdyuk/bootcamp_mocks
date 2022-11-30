@@ -29,8 +29,7 @@ const first = test[0];
 const second = test[1];
 const third = test[2];
 
-const [skip, foo, bar] = test;
-
+// const [skip, foo, bar] = test;
 /*
 {
     "id": 1,
@@ -141,8 +140,8 @@ function helpMePlease([arg1, arg2], [arg3]) {
 }
 
 
-const first = [[1], [2, 3]];
-const second = [['f', 't'], ['s']]
+/*const first = [[1], [2, 3]];
+const second = [['f', 't'], ['s']]*/
 // console.log(helpMePlease(first, second));
 // console.log(helpMePlease(...first, second));
 // console.log(helpMePlease(first, ...second));

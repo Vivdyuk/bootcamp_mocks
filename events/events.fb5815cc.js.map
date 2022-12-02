@@ -1,0 +1,1 @@
+{"mappings":"AAIeA,SAASC,cAAc,WAE/BC,iBAAiB,SAAS","sources":["src/events/events.js"],"sourcesContent":["/**\n * click\n */\n\nconst button = document.querySelector('.button');\n\nbutton.addEventListener('click', () => {\n\n})"],"names":["document","querySelector","addEventListener"],"version":3,"file":"events.fb5815cc.js.map"}

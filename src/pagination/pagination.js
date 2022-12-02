@@ -9,35 +9,26 @@ const BASE_URL = 'https://jsonplaceholder.typicode.com/';
 
 const list = document.querySelector('.users');
 //-----------------------------------------------------------------------------------------------
-const fetchUsers = () => {
-  return fetch(`${BASE_URL}users`)
+const fetchData = (endpoint, params /*обʼєкт*/) => {
+  const query = params ? Object.keys(params).reduce((acc, key) => {
+    return `${acc}${key}=${params[key]}&`
+  }, '?') : '';
+
+  return fetch(`${BASE_URL}${endpoint}${query}`)
     .then(response => {
       console.log(response);
 
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error);
-      return error.message;
-    });
-};
-
-const fetchPosts = (id) => {
-
-  return fetch(`${BASE_URL}posts?userId=${id}&_limit=3`)
-    .then(response => {
       if (!response.ok) {
-        throw new Error('Sry cannot find any posts');
+        throw new Error(`Sry cannot find any ${endpoint}`);
       }
-
       return response.json();
     })
     .catch(error => {
       console.log(error);
       return error.message;
     });
-  ;
 };
+
 
 const createMarkUp = (users) => {
   console.log(users);
@@ -70,7 +61,7 @@ const createPostMarkup = (targetelement, posts) => {
   targetelement.insertAdjacentHTML('beforeend', markup);
 };
 
-fetchUsers()
+fetchData('users')
   .then(createMarkUp);
 
 list.addEventListener('click', (event) => {
@@ -81,7 +72,10 @@ list.addEventListener('click', (event) => {
   console.dir(event.target);
   console.dir(event.target.dataset.id);
 
-  fetchPosts(event.target.dataset.id)
+  fetchData('posts',{
+    userId: event.target.dataset.id,
+    _limit: 3,
+  })
     .then(posts => {
       createPostMarkup(event.target, posts);
     });

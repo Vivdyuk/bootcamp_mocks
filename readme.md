@@ -1,1 +1,1 @@
-[LIVE PAGE](https://vivdyuk.github.io/goit-js-hw-08/)
+[LIVE PAGE](https://vivdyuk.github.io/bootcamp_mocks/)

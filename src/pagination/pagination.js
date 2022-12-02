@@ -29,6 +29,9 @@ const fetchData = (endpoint, params /*обʼєкт*/) => {
     });
 };
 //-----------------------------------------------------------------------------------------------
+
+
+
 const createMarkup = (target, elements, endpoint) => {
   const possibleCallbacks = {
     users: (user) => (

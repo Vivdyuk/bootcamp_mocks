@@ -11,7 +11,7 @@ const list = document.querySelector('.users');
 //-----------------------------------------------------------------------------------------------
 const fetchData = (endpoint, params /*обʼєкт*/) => {
   const query = params ? Object.keys(params).reduce((acc, key) => {
-    return `${acc}${key}=${params[key]}&`
+    return `${acc}${key}=${params[key]}&`;
   }, '?') : '';
 
   return fetch(`${BASE_URL}${endpoint}${query}`)
@@ -28,56 +28,48 @@ const fetchData = (endpoint, params /*обʼєкт*/) => {
       return error.message;
     });
 };
-
-
-const createMarkUp = (users) => {
-  console.log(users);
-
-  const markup = Array.isArray(users)
-    ? users.map(user => (
+//-----------------------------------------------------------------------------------------------
+const createMarkup = (target, elements, endpoint) => {
+  const possibleCallbacks = {
+    users: (user) => (
       `
         <li data-id="${user.id}"><p style="pointer-events: none">${user.name}</p></li>
       `
-    )).join('')
-    : `<p>${users}</p>`;
-
-  list.insertAdjacentHTML('beforeend', markup);
-};
-
-const createPostMarkup = (targetelement, posts) => {
-  console.log(posts);
-
-  const markup = Array.isArray(posts)
-    ? posts.map(post => (
+    ),
+    posts: (post) => (
       `
         <div>
             <p style="pointer-events: none">${post.title}</p>
             <p style="pointer-events: none">${post.body}</p>
         </div>
       `
-    )).join('')
-    : `<p>${posts}</p>`;
+    ),
+  };
 
-  targetelement.insertAdjacentHTML('beforeend', markup);
+  const result = Array.isArray(elements)
+    ? elements.map(possibleCallbacks[endpoint]).join('')
+    : `<p>${elements}</p>`;
+
+  target.insertAdjacentHTML('beforeend', result);
 };
+//-----------------------------------------------------------------------------------------------
+
 
 fetchData('users')
-  .then(createMarkUp);
+  .then((data) => createMarkup(list, data, 'users'));
 
 list.addEventListener('click', (event) => {
 
   if (event.target.tagName !== 'LI') {
     return;
   }
-  console.dir(event.target);
-  console.dir(event.target.dataset.id);
 
-  fetchData('posts',{
+  fetchData('posts', {
     userId: event.target.dataset.id,
     _limit: 3,
   })
     .then(posts => {
-      createPostMarkup(event.target, posts);
+      createMarkup(event.target, posts, 'posts');
     });
 });
 
